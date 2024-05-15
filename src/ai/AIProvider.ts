@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv'
 import { GoogleGenerativeAI, GenerativeModel, GenerateContentResult } from "@google/generative-ai";
-import { error } from 'console';
 
 export interface AIProvider {
     requestComponents(centralComponent: string): Promise<AIResult>

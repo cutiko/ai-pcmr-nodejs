@@ -1,11 +1,13 @@
 import express, {Express, Request, Response} from 'express'
-import { server, startServer } from './server/ServerProvider'
-import { HomeRoutes, ExpressHomeRoutes } from './routes/HomeRoutes'
+import { registerDependencies, injectHomeRoutes } from './di/DependencyInjection'
+import { startServer } from './server/ServerProvider'
+import { HomeRoutes } from './routes/HomeRoutes'
 
 function startRoutes() {
-    const homeRoutes: HomeRoutes = ExpressHomeRoutes.builder()
+    const homeRoutes: HomeRoutes = injectHomeRoutes()
     homeRoutes.startRoutes()
 }
 
+registerDependencies()
 startRoutes()
 startServer()

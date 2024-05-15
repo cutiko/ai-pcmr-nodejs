@@ -1,6 +1,5 @@
-import { server } from '../server/ServerProvider'
-import express, {Express, Request, Response} from 'express'
-import { AIProvider, GeminiAIProvider, AISuccess, AIError, AIResultType } from '../ai/AIProvider'
+import {Express, Request, Response} from 'express'
+import { AIProvider, AISuccess, AIError, AIResultType } from '../ai/AIProvider'
 
 export interface HomeRoutes {
     home(): any
@@ -16,11 +15,6 @@ export class ExpressHomeRoutes implements HomeRoutes {
     constructor(server: Express, aiProvider: AIProvider) {
         this.server = server
         this.aiProvider = aiProvider
-    }
-
-    static builder = (): HomeRoutes => {
-        const aiProvider = new GeminiAIProvider()
-        return new ExpressHomeRoutes(server, aiProvider)
     }
 
     home() {
